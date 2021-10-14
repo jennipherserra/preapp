@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FormGroup, FormControl, InputLabel, Input, Button, makeStyles, Typography } from '@material-ui/core';
-import { addSolicitud } from '../config/axios';
+//import { addSolicitud } from '../config/axios';
 import { useHistory } from "react-router-dom";
 
 const initialValue = {
     idUsuario: '1',
     fechayHoraVisita: '',
     motivo: '',
-    idArea: ''
+    idArea: '',
 }
 
 const useStyles = makeStyles({
@@ -25,17 +25,24 @@ const CrearSolicitud = () => {
     const { idUsuario, fechayHoraVisita, motivo, idArea } = solicitud;
     const classes = useStyles();
 
-    const history = useHistory();
+    //const history = useHistory();
     
     const onValueChange = (e) => {
-        //console.log(e.target.value);
         setSolicitud({...solicitud, [e.target.name]: e.target.value})
     }
 
     const addSol = async() => {
-        await addSolicitud(solicitud);
-        alert('Solicitud agregada');
-        history.push('./adminhome');
+        if (fechayHoraVisita.trim() === ""){
+            alert("Ingrese una fecha valida");   
+        } else if(motivo.trim() === ""){
+            alert("Motivo requerido")
+        } else if(idArea.trim() === ""){
+            alert("Area requerida")
+        } else {
+            /* await addSolicitud(solicitud);
+            alert('Solicitud agregada');
+            history.push('./adminhome'); */
+        }
     }
 
 

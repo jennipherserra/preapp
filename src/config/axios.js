@@ -6,7 +6,7 @@ const axiosClient =  process.env.REACT_APP_BACKEND_URL;
 
 export const getSolicitudes = async (id) => {
     id = id || '';
-    return await axios.get(`${axiosClient}/api/solicitudes/empleado/1`);//listar solo las solicitudes del usuario logeado
+    return await axios.get(`${axiosClient}/api/solicitudes/empleado/1/${id}`);//listar solo las solicitudes del usuario logeado
 }
 
 export const buscarSolicitudes = async (id) => {
@@ -22,8 +22,8 @@ export const deleteSolicitud = async (idSolicitud) => {
     return await axios.delete(`${axiosClient}/${idSolicitud}`);
 }
 
-export const editSolicitud = async (idSolicitud, solicitud) => {
-    return await axios.put(`${axiosClient}/${idSolicitud}`, solicitud)
+export const editSolicitud = async (solicitud) => {
+    return await axios.put(`${axiosClient}/api/solicitudes/`, solicitud)
 }
 
 export const editEstadoSol = async (id) => {
